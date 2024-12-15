@@ -12,9 +12,52 @@ app = Flask(__name__)
 Scss(app)
 
 
+# Populate db with tags data from JSON
+def load_tags_from_file(file_path):
+    try:
+        # read json file
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+            
+
+        # isert tags in db
+        created_tags = []
+        skipped_tags = []
+
+
+        for item in data:
+
+            # cehcking if the tag already exists
+            existing_tag = Tag.query.filter_by(name=item['name']).first()
+            if existing_tag:
+                skipped_tags.append(item['name'])
+                continue
+
+            # creating new tag
+            new_tag = Tag(name=item['name'], color=item['color'])
+            db.session.add(new_tag)
+            created_tags.append(item['name'])
+
+        # commit to db
+        db.session.commit()
+
+    except Exception as e:
+        print(f"Error loading tags: {e}")
+
+
 # db config
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
 db.init_app(app)
+
+
+file_path = os.path.join(os.path.dirname(__file__), 'tags.json')
+with app.app_context():
+    # Crear todas las tablas automáticamente en el orden correcto
+    db.create_all()
+
+    # Cargar los tags predeterminados
+    load_tags_from_file(file_path)
 
 
 # ROUTER
@@ -103,48 +146,9 @@ def edit_task(id: int):
         return render_template('edit.html', update_task=update_task, all_tags=all_tags)
 
 
-# Populate db with tags data from JSON
-def load_tags_from_file(file_path):
-    try:
-        # read json file
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-            
-
-        # isert tags in db
-        created_tags = []
-        skipped_tags = []
-
-
-        for item in data:
-
-            # cehcking if the tag already exists
-            existing_tag = Tag.query.filter_by(name=item['name']).first()
-            if existing_tag:
-                skipped_tags.append(item['name'])
-                continue
-
-            # creating new tag
-            new_tag = Tag(name=item['name'], color=item['color'])
-            db.session.add(new_tag)
-            created_tags.append(item['name'])
-
-        # commit to db
-        db.session.commit()
-
-    except Exception as e:
-        print(f"Error loading tags: {e}")
-
-
 
 if __name__ == "__main__":
-    file_path = os.path.join(os.path.dirname(__file__), 'tags.json')
     
-    with app.app_context():
-        # Crear todas las tablas automáticamente en el orden correcto
-        db.create_all()
-
-        # Cargar los tags predeterminados
-        load_tags_from_file(file_path)
+    
     
     app.run(debug=True)
