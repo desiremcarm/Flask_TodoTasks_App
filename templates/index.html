@@ -1,39 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{url_for("static", filename="styles.css")}}"/>
-    <title>Home</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
-  </head>
-  <body>
-    <nav>
-      <hgroup>
-        <h2>TODO tasks app 📁</h2>
-        <p>Using Python, Flask, SQLAlchemy, SASS & PicoCSS</p>
-      </hgroup>
-    </nav>
-    <main class="container-fluid">
-      <h2>Tasks list</h2>
-      <hr />
-      <div>
-        <article>
-          <header>
-            <h5>Task name</h5>
-          </header>
-          <p>Some description</p>
-          <footer>
-            <div role="group">
-              <button class="outline">Delete</button>
-              <button class="outline">Edit</button>
-            </div>
-          </footer>
-        </article>
-      </div>
-    </main>
-  </body>
-</html>
+<!-- Inherit from base -->
+{% extends 'base.html' %} {% block head %}
+
+<title>Tasks</title>
+{% endblock %} {% block body %}
+
+<main class="container-fluid">
+  <h2>Tasks list</h2>
+  <hr />
+  <div>
+    <article>
+      <header>
+        <h5>Task name</h5>
+      </header>
+      <p>Some description</p>
+      <footer>
+        <div role="group">
+          <button class="outline">Delete</button>
+          <button class="outline">Edit</button>
+        </div>
+      </footer>
+    </article>
+  </div>
+</main>
+
+{% endblock %}
