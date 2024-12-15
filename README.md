@@ -21,7 +21,7 @@ To learn more about Flask, Python and SQLAlchemy by doing a simple CRUD applicat
 ---
 1. An empty dashboard is displayed
 2. You can do the following actions
-   
+
 | Option | Description |
 | ----------- | ----------- |
 | Add Task | Add a new task to the sql database. |
@@ -31,3 +31,5 @@ To learn more about Flask, Python and SQLAlchemy by doing a simple CRUD applicat
 ### Demo GIF 📹
 ---
 ![Gif of how the app works](img/todoappgif.gif)
+
+Python, SASS, Flask, SQLAlchemy, JavaScript
