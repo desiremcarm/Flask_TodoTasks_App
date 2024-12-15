@@ -1,3 +1,7 @@
-body {
-  background-color: antiquewhite;
+html {
+  padding: 2em;
+}
+
+hgroup p {
+  margin-top: 5px;
 }/*# sourceMappingURL=styles.css.map */
