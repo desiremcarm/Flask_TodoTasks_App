@@ -27,7 +27,12 @@
   </div>
   <p>{{ task.description }}</p>
   <div class="card_footer">
-    <span class="tag"> {{ task.tag }}</span>
+    <span
+      style="color: {{ task.tag.color if task.tag else 'black' }}"
+      class="tag"
+    >
+      📍 {{ task.tag.name if task.tag else 'No tag' }}
+    </span>
     <span class="created">
       Created: {{ task.created.strftime("%Y-%m-%d") }}
     </span>

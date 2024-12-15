@@ -1,0 +1,5 @@
+from .tag_model import Tag
+from .task_model import Task
+from .tag_model import db
+
+__all__ = ['Tag', 'Task', 'db']  # Facilita la importación de modelos

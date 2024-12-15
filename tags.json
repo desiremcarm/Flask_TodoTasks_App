@@ -1,0 +1,8 @@
+[
+  { "name": "family", "color": "#524ED2" },
+  { "name": "study", "color": "#9236A4" },
+  { "name": "work", "color": "#748BF8" },
+  { "name": "wellbeing", "color": "#006D46" },
+  { "name": "other", "color": "#00B478" },
+  { "name": "financial", "color": "#D9269D" }
+]

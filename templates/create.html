@@ -24,7 +24,12 @@
       id="description"
       required
     />
-    <input type="text" placeholder="Family" name="tag" id="tag" required />
+    <select name="tag" id="tag" required>
+      <option value="" disabled selected>Select a tag</option>
+      {% for tag in all_tags %}
+      <option value="{{ tag.id }}">{{ tag.name }}</option>
+      {% endfor %}
+    </select>
     <input type="submit" value="Create task" id="btn" required />
   </form>
 </main>

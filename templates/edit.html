@@ -17,7 +17,18 @@
       name="description"
       id="description"
     />
-    <input type="text" value="{{update_task.tag}}" name="tag" id="tag" />
+    <select name="tag" id="tag">
+      <option value="{{ update_task.tag_id }}" selected>
+        {{update_task.tag.name}}
+      </option>
+
+      {% for tag in all_tags %}
+
+      <option value="{{ tag.id }}">{{ tag.name }}</option>
+
+      {% endfor %}
+    </select>
+
     <input type="submit" value="Update Task" id="btn" />
   </form>
 </main>
