@@ -1,0 +1,63 @@
+<!-- HEADER -->
+{% macro render_header(task_count) %}
+<div role="group">
+  <hgroup>
+    <h2>Tasks list ({{ task_count }})</h2>
+  </hgroup>
+  <a
+    role="button"
+    data-tooltip="Create a new task"
+    data-placement="top"
+    class="contrast"
+    href="/create"
+    >➕ Add new task</a
+  >
+</div>
+{% endmacro %}
+
+<!-- TASK TEMPLATE -->
+{% macro render_task(task) %}
+<article>
+  <div class="task_head">
+    <h3 class="pico-color-indigo-700">{{ task.title }}</h3>
+    <div>
+      <span class="status"> Completed: </span>
+      <input type="checkbox" id="complete" name="complete" />
+    </div>
+  </div>
+  <p>{{ task.description }}</p>
+  <div class="card_footer">
+    <span class="tag"> {{ task.tag }}</span>
+    <span class="created">
+      Created: {{ task.created.strftime("%Y-%m-%d") }}
+    </span>
+  </div>
+  <hr />
+  <div role="group">
+    <a
+      onclick="setTaskId('{{ task.id }}')"
+      role="button"
+      class="outline pico-color-red-550"
+      >❌ Delete</a
+    >
+    <a role="button" href="/edit/{{ task.id }}" class="outline">✍🏻 Edit</a>
+  </div>
+</article>
+{% endmacro %}
+
+<!-- DIALOG -->
+{% macro render_modal() %}
+<dialog id="dialog">
+  <article>
+    <h2>Confirm the action</h2>
+    <p>
+      You're about to delete a task. This
+      <b>cannot be undone</b>. Are you sure?
+    </p>
+    <footer>
+      <button class="secondary">Cancel</button>
+      <a id="delBtn" role="button" class="outline pico-color-red-550">Yes</a>
+    </footer>
+  </article>
+</dialog>
+{% endmacro %}

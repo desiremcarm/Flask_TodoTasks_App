@@ -1,37 +1,23 @@
-<!-- Inherit from base -->
+<!-- index.html -->
 {% extends 'base.html' %}
+
+<!-- MACROS -->
+{% import 'macros.html' as macros %}
 
 <!-- HEAD -->
 {% block head %}
-
 <title>Tasks</title>
-
 {% endblock %}
 <!-- /HEAD -->
 
 <!-- BODY -->
 {% block body %}
-
 <main class="container-fluid">
-  <!-- HEADER -->
-  <div role="group">
-    <hgroup>
-      <h2>Tasks list ({{ all_tasks|length }})</h2>
-    </hgroup>
-    <a
-      role="button"
-      data-tooltip="Create a new task"
-      data-placement="top"
-      class="contrast"
-      href="/create"
-      >➕ Add new task</a
-    >
-  </div>
-  <!-- /HEADER -->
+  <!-- HEADE MACRO -->
+  {{ macros.render_header(all_tasks|length) }}
 
   <div>
     {% if all_tasks | length < 1 %}
-
     <div class="container">
       <img
         src="https://img.freepik.com/free-vector/organic-flat-web-search-illustration_52683-60699.jpg?t=st=1734200432~exp=1734204032~hmac=2dfed370add6c950dce30806ec3aca9bc7102b24d2dff54d0f62bca0c3a92f30&w=996"
@@ -39,46 +25,14 @@
       />
       <p>You have nothing urgent right now. Go celebrate!</p>
     </div>
-
     {% else %}
-
-    <!-- TASKS -->
-    {% for task in all_tasks %}
-
-    <!-- TASK TEMPLATE -->
-    <article>
-      <div class="task_head">
-        <h3 class="pico-color-indigo-700">{{ task.title }}</h3>
-        <div>
-          <span class="status"> Completed: </span>
-          <input type="checkbox" id="complete" name="complete" />
-        </div>
-      </div>
-      <p>{{task.description}}</p>
-      <div class="card_footer">
-        <span class="tag"> {{ task.tag }}</span>
-        <span class="created">
-          Created: {{ task.created.strftime("%Y-%m-%d") }}
-        </span>
-      </div>
-      <hr />
-      <div role="group">
-        <a
-          role="button"
-          href="/del/{{task.id}}"
-          class="outline pico-color-red-550"
-          >❌ Delete</a
-        >
-        <a role="button" href="/edit/{{task.id}}" class="outline">✍🏻 Edit</a>
-      </div>
-    </article>
-    <!-- /TASK TEMPLATE -->
-    {% endfor %}
-    <!-- /TASKS -->
-
-    {% endif %}
+    <!-- TASKS MACRO -->
+    {% for task in all_tasks %} {{ macros.render_task(task) }} {% endfor %} {%
+    endif %}
   </div>
-</main>
 
+  <!-- MODAL MACRO -->
+  {{ macros.render_modal() }}
+</main>
 {% endblock %}
 <!-- /BODY -->

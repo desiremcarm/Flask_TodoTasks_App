@@ -18,19 +18,19 @@ hgroup p {
   margin-bottom: 15px !important;
 }
 
-article {
+div article {
   font-family: "Poppins", sans-serif;
   margin-top: 25px !important;
   padding: 12px !important;
   padding-bottom: 0px !important;
 }
-article h3,
-article p,
-article span {
+div article h3,
+div article p,
+div article span {
   padding-left: 15px !important;
   padding-right: 15px !important;
 }
-article h3 {
+div article h3 {
   padding-top: 10px !important;
   font-family: "Poppins", sans-serif;
 }
