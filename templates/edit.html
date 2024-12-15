@@ -9,7 +9,15 @@
   <hr />
 
   <form action="/edit/{{update_task.id}}" method="POST">
+    <label for="title"></label>
     <input type="text" value="{{update_task.title}}" name="title" id="title" />
+    <input
+      type="text"
+      value="{{update_task.description}}"
+      name="description"
+      id="description"
+    />
+    <input type="text" value="{{update_task.tag}}" name="tag" id="tag" />
     <input type="submit" value="Update Task" id="btn" />
   </form>
 </main>

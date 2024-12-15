@@ -1,9 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
-  padding: 2em;
+  padding: 2em !important;
+  font-family: "Montserrat", serif;
 }
 
 hgroup {
   p {
-    margin-top: 5px;
+    margin-top: 12px;
+  }
+  margin-bottom: 1.9em !important;
+}
+
+.created,
+.tag {
+  font-size: 15px;
+  margin-bottom: 15px !important;
+}
+
+article {
+  font-family: "Poppins", sans-serif;
+  margin-top: 25px !important;
+  padding: 12px !important;
+  padding-bottom: 0px !important;
+  h3,
+  p,
+  span {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  h3 {
+    padding-top: 10px !important;
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+.card_footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task_head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  span {
+    margin-right: -12px;
+    font-size: 16px;
+  }
+}
+
+img {
+  display: block;
+  margin: auto !important;
+  width: 250px;
+  height: 100%;
+}
+
+.container {
+  img {
+    margin-top: 35px !important;
+  }
+  p {
+    margin-top: 10px;
+    text-align: center;
   }
 }

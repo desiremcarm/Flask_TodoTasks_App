@@ -1,0 +1,32 @@
+<!-- Inherit from base -->
+{% extends 'base.html' %} {% block head %}
+
+<title>Create task</title>
+{% endblock %} {% block body %}
+
+<main class="container-fluid">
+  <h2>Create a new task</h2>
+  <hr />
+
+  <form action="/create" method="POST">
+    <label for="title"></label>
+    <input
+      type="text"
+      placeholder="Call mom"
+      name="title"
+      id="title"
+      required
+    />
+    <input
+      type="text"
+      placeholder="I should call her soon!"
+      name="description"
+      id="description"
+      required
+    />
+    <input type="text" placeholder="Family" name="tag" id="tag" required />
+    <input type="submit" value="Create task" id="btn" required />
+  </form>
+</main>
+
+{% endblock %}
