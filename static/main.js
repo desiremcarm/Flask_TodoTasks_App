@@ -5,3 +5,7 @@ function setTaskId(task_id) {
   document.getElementById("dialog").open = true; // Open modal
   document.getElementById("delBtn").href = "/del/" + taskToDelete; // Set the delete button of the modal
 }
+
+function closeDialog() {
+  document.getElementById("dialog").open = false; // Close modal
+}
