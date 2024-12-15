@@ -75,7 +75,6 @@ def delete(id: int):
 def edit_task(id: int):
     
     update_task = Task.query.get_or_404(id)
-    current_tag = update_task.tag
     
     if request.method == "POST":
         
