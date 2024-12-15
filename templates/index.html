@@ -8,19 +8,30 @@
   <h2>Tasks list</h2>
   <hr />
   <div>
+    <!-- Task template -->
+    {% if all_tasks | length < 1 %}
+    <h3>No tasks yet!</h3>
+    {% else %} {% for task in all_tasks %}
     <article>
       <header>
-        <h5>Task name</h5>
+        <h5>{{ task.title }}</h5>
       </header>
-      <p>Some description</p>
+      <p>{{ task.description }}</p>
       <footer>
+        <span> Created: {{ task.created.strftime("%Y-%m-%d") }} </span>
         <div role="group">
           <button class="outline">Delete</button>
           <button class="outline">Edit</button>
         </div>
       </footer>
     </article>
+    {% endfor %} {% endif %}
   </div>
+
+  <form action="/" method="POST">
+    <input type="text" name="title" id="title" />
+    <input type="submit" value="Add Task" id="btn" />
+  </form>
 </main>
 
 {% endblock %}

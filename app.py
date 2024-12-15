@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(120), nullable=False)
+    description = db.Column(db.String(120))
     isCompleted = db.Column(db.Integer, default=0)
     created = db.Column(db.DateTime, default=datetime.now)
 
@@ -24,10 +24,24 @@ class Task(db.Model):
 
 
 # Routes
-@app.route('/')
+@app.route('/', methods=["POST", "GET"])
 def index(): # Home main page
-    return render_template("index.html")
-
+    # Add task
+    if request.method == "POST":
+        current_task = request.form['title']
+        new_task = Task(title=current_task)
+        try:
+            db.session.add(new_task)
+            db.session.commit()
+            return redirect("/")
+        except Exception as e:
+            print(f"ERROR: {e}")
+            return f"ERROR: {e}"
+        
+    # See all tasks
+    else:
+        all_tasks = Task.query.order_by(Task.created).all()
+        return render_template('index.html', all_tasks=all_tasks)
 
 
 
