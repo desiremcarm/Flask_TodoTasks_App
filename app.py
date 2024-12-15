@@ -45,6 +45,33 @@ def index(): # Home main page
 
 
 
+# Delete task
+@app.route("/del/<int:id>")
+def delete(id: int):
+    delete_task = Task.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect("/")
+    except Exception as e:
+            print(f"ERROR: {e}")
+            return f"ERROR: {e}"
+
+
+# Edit task
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit_task(id: int):
+    update_task = Task.query.get_or_404(id)
+    if request.method == "POST":
+        update_task.title = request.form['title']
+        try:
+            db.session.commit()
+            return redirect("/")
+        except Exception as e:
+            print(f"ERROR: {e}")
+            return f"ERROR: {e}"
+    else:
+        return render_template('edit.html', update_task=update_task)
 
 if __name__ in "__main__":
     with app.app_context():

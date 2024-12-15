@@ -1,0 +1,17 @@
+<!-- Inherit from base -->
+{% extends 'base.html' %} {% block head %}
+
+<title>Edit task</title>
+{% endblock %} {% block body %}
+
+<main class="container-fluid">
+  <h2>Edit task: {{ update_task.title }}</h2>
+  <hr />
+
+  <form action="/edit/{{update_task.id}}" method="POST">
+    <input type="text" value="{{update_task.title}}" name="title" id="title" />
+    <input type="submit" value="Update Task" id="btn" />
+  </form>
+</main>
+
+{% endblock %}
